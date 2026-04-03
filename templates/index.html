@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Journal iT — Your Personal Digital Journal</title>
+  <meta name="description"
+    content="Journal iT is a calm, focused space for writing daily thoughts and storing memories." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}" />
+  <link rel="icon" href="{{ url_for('static', filename='assets/logo.png') }}" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+
+<body>
+
+  <main class="landing-root" aria-label="Journal iT landing page">
+
+    <section class="panel-brand" aria-labelledby="brand-heading">
+
+      <div class="panel-brand-edge" aria-hidden="true"></div>
+
+      <div class="panel-brand-content">
+
+        <div class="brand-datestamp" aria-label="Today's date">
+          <span id="js-date">Journal iT</span>
+        </div>
+
+        <div class="brand-logo">
+          <div class="brand-logo-icon" aria-hidden="true"
+            style="overflow: hidden; display: flex; align-items: center; justify-content: center;">
+            <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Logo"
+              style="height: 100%; width: 100%; object-fit: contain;">
+          </div>
+          <div>
+            <div class="brand-logo-name">Journal iT</div>
+            <div class="brand-logo-tagline font-sans">Personal Journal</div>
+          </div>
+        </div>
+
+        <h1 class="brand-headline" id="brand-heading">
+          Write it down,<br />
+          <em>let it breathe.</em>
+        </h1>
+
+        <p class="brand-description">
+          Journal iT is a distraction-free space to write what matters
+          your daily reflections, fleeting ideas, and life's small moments.
+          Simple, private, and always yours.
+        </p>
+
+        <div class="brand-divider" aria-hidden="true"></div>
+
+        <ul class="brand-features" aria-label="App features" role="list">
+          <li class="feature-item">
+            <span class="feature-icon" aria-hidden="true">
+              <span class="material-symbols-outlined">edit_square</span>
+            </span>
+            Write daily thoughts &amp; reflections
+          </li>
+          <li class="feature-item">
+            <span class="feature-icon" aria-hidden="true">
+              <span class="material-symbols-outlined">calendar_month</span>
+            </span>
+            Store memories across time
+          </li>
+          <li class="feature-item">
+            <span class="feature-icon" aria-hidden="true">
+              <span class="material-symbols-outlined">lock</span>
+            </span>
+            Private journal, always secure
+          </li>
+          <li class="feature-item">
+            <span class="feature-icon" aria-hidden="true">
+              <span class="material-symbols-outlined">psychology</span>
+            </span>
+            Minimal design, maximum focus
+          </li>
+        </ul>
+
+        <div class="brand-quote" role="complementary" aria-label="Inspirational quote">
+          <blockquote>
+            "Journal writing is a voyage to the interior."
+          </blockquote>
+          <div class="brand-quote-author">— Christina Baldwin</div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="panel-auth" aria-labelledby="login-title">
+
+      <article class="login-card" role="main">
+
+        <header class="login-card-header">
+          <div class="login-card-icon" aria-hidden="true">
+            <span class="material-symbols-outlined" style="font-size: 2.5rem; line-height: 1;">auto_stories</span>
+          </div>
+          <h2 class="login-card-title" id="login-title">Start writing today</h2>
+          <p class="login-card-subtitle text-muted">
+            Sign in to open your private journal
+          </p>
+        </header>
+
+        <div id="auth-status" role="alert" aria-live="polite"></div>
+
+        <div class="auth-providers">
+          <button id="btn-google-signin" class="btn btn-google" type="button" aria-label="Continue with Google">
+            <svg width="20" height="20" viewBox="0 0 48 48" aria-hidden="true">
+              <path fill="#EA4335"
+                d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" />
+              <path fill="#4285F4"
+                d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z" />
+              <path fill="#FBBC05"
+                d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z" />
+              <path fill="#34A853"
+                d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" />
+              <path fill="none" d="M0 0h48v48H0z" />
+            </svg>
+            <span class="btn-text">Continue with Google</span>
+          </button>
+        </div>
+
+        <div class="trust-row" aria-label="Security assurances">
+          <span class="trust-item">
+            <span class="material-symbols-outlined" style="font-size: 1.25rem;">gpp_good</span>
+            Secure
+          </span>
+          <span class="trust-dot" aria-hidden="true"></span>
+          <span class="trust-item">
+            <span class="material-symbols-outlined" style="font-size: 1.25rem;">shield</span>
+            Private
+          </span>
+          <span class="trust-dot" aria-hidden="true"></span>
+          <span class="trust-item">
+            <span class="material-symbols-outlined" style="font-size: 1.25rem;">sync</span>
+            Synced
+          </span>
+        </div>
+
+        <footer class="login-footer">
+          By continuing, you agree to our
+          <a href="#" aria-label="Terms of Service">Terms</a> and
+          <a href="#" aria-label="Privacy Policy">Privacy Policy</a>.
+        </footer>
+
+      </article>
+
+      <p class="page-footer text-faint">© 2026 Journal iT</p>
+
+    </section>
+
+  </main>
+
+  <script type="module" src="{{ url_for('static', filename='js/landing.js') }}"></script>
+
+</body>
+
+</html>
