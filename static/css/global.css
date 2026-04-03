@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  --color-bg: #F7F4EF;
+  --color-surface: #FEFCF8;
+  --color-surface-alt: #F0EBE1;
+  --color-border: #E3DBCC;
+  --color-ink: #2C2825;
+  --color-ink-muted: #7A6F62;
+  --color-ink-faint: #B0A699;
+  --color-accent: #8B6F4E;
+  --color-accent-hov: #6F5538;
+  --color-accent-soft: #F0E8DC;
+  --color-google: #FFFFFF;
+  --color-google-bd: #DADCE0;
+  --color-google-hov: #F8F9FA;
+
+  --font-serif: 'Lora', Georgia, serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+
+  --shadow-sm: 0 1px 3px rgba(44, 40, 37, .08), 0 1px 2px rgba(44, 40, 37, .05);
+  --shadow-md: 0 4px 16px rgba(44, 40, 37, .10), 0 2px 6px rgba(44, 40, 37, .06);
+  --shadow-lg: 0 12px 40px rgba(44, 40, 37, .13), 0 4px 12px rgba(44, 40, 37, .07);
+  --shadow-card: 0 2px 8px rgba(44, 40, 37, .07), 0 8px 32px rgba(44, 40, 37, .09);
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition: 200ms var(--ease-out);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  line-height: 1.6;
+  min-height: 100vh;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+.text-muted {
+  color: var(--color-ink-muted);
+}
+
+.text-faint {
+  color: var(--color-ink-faint);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-5);
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
+  user-select: none;
+  white-space: nowrap;
+}
+
+.btn:active {
+  transform: scale(0.975);
+}
+
+.btn-primary {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--color-accent-hov);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-google {
+  background: var(--color-google);
+  color: #3c4043;
+  border: 1.5px solid var(--color-google-bd);
+  box-shadow: var(--shadow-sm);
+  font-weight: 500;
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  font-size: 0.9375rem;
+  letter-spacing: 0.01em;
+}
+
+.btn-google:hover {
+  background: var(--color-google-hov);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-google svg {
+  flex-shrink: 0;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--color-ink-faint);
+  font-size: 0.8125rem;
+  margin: var(--space-4) 0;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+.mood-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  display: inline-block;
+  vertical-align: middle;
+}
