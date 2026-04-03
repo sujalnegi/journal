@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard — Journal iT</title>
+    <meta name="description" content="Your Journal iT dashboard — a private space to write." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sidebar.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/right-panel.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}" />
+    <link rel="icon" href="{{ url_for('static', filename='assets/logo.png') }}" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+
+<body>
+
+    <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle sidebar">
+        <span class="material-symbols-outlined">menu</span>
+    </button>
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <div class="dashboard-shell">
+
+        <aside class="sidebar" id="sidebar">
+
+            <div class="sidebar-brand">
+                <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Journal iT Logo"
+                    class="sidebar-brand-logo">
+                <div>
+                    <div class="sidebar-brand-name">Journal iT</div>
+                    <div class="sidebar-brand-tag">Your private journal</div>
+                </div>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-streak-card">
+                    <div class="streak-header">
+                        <span class="streak-icon">🔥</span>
+                        <span class="streak-title">Current Streak</span>
+                    </div>
+                    <div class="streak-value" id="streak-value">0 days</div>
+                    <div class="streak-subtitle" id="streak-subtitle">Write today to start!</div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="mood-section-title">
+                    <span class="material-symbols-outlined">mood</span>
+                    Mood Overview
+                </div>
+                <div class="mood-summary-grid" id="mood-summary-content">
+                    <div class="mood-empty-state">Loading...</div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="mini-cal-header">
+                    <span class="mini-cal-title" id="mini-cal-month-title">Mar 2026</span>
+                    <div class="mini-cal-nav">
+                        <button class="mini-cal-nav-btn" id="mini-cal-prev" aria-label="Previous month">
+                            <span class="material-symbols-outlined">chevron_left</span>
+                        </button>
+                        <button class="mini-cal-nav-btn" id="mini-cal-next" aria-label="Next month">
+                            <span class="material-symbols-outlined">chevron_right</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="mini-cal-weekdays">
+                    <div>S</div>
+                    <div>M</div>
+                    <div>T</div>
+                    <div>W</div>
+                    <div>T</div>
+                    <div>F</div>
+                    <div>S</div>
+                </div>
+                <div class="mini-cal-grid" id="mini-cal-grid"></div>
+            </div>
+
+        </aside>
+
+        <div class="dashboard-layout">
+            <header class="dashboard-header">
+                <div class="logo font-serif" style="display: flex; align-items: center; gap: 8px;">
+                    <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Journal iT Logo"
+                        style="height: 32px; width: 32px; object-fit: contain;">
+                    Journal iT
+                </div>
+                <div class="user-controls">
+                    <span class="user-info" id="user-welcome">Loading...</span>
+                    <button class="btn btn-outline" id="btn-sign-out" type="button">Sign out</button>
+                </div>
+            </header>
+
+            <main class="dashboard-main">
+                <div class="calendar-header">
+                    <button class="nav-btn" id="prev-month" aria-label="Previous Month">
+                        <span class="material-symbols-outlined">chevron_left</span>
+                    </button>
+                    <h2 class="current-month font-serif" id="month-display">Month Year</h2>
+                    <button class="nav-btn" id="next-month" aria-label="Next Month">
+                        <span class="material-symbols-outlined">chevron_right</span>
+                    </button>
+                </div>
+
+                <div class="calendar-container">
+                    <div class="weekdays-grid">
+                        <div>Sun</div>
+                        <div>Mon</div>
+                        <div>Tue</div>
+                        <div>Wed</div>
+                        <div>Thu</div>
+                        <div>Fri</div>
+                        <div>Sat</div>
+                    </div>
+                    <div class="dates-grid" id="calendar-grid">
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <aside class="right-panel" id="right-panel">
+
+            <div id="rp-state-default" class="rp-state active">
+                <div class="rp-section-title">
+                    <span class="material-symbols-outlined">query_stats</span>
+                    Your Stats
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-value" id="rp-total-entries">-</div>
+                        <div class="stat-label">Entries</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value" id="rp-avg-words">-</div>
+                        <div class="stat-label">Avg Words</div>
+                    </div>
+                </div>
+
+                <div class="rp-section-title" style="margin-top: var(--space-3);">
+                    <span class="material-symbols-outlined">history</span>
+                    Recent Activity
+                </div>
+                <div class="activity-list" id="rp-recent-activity">
+                    <div class="text-faint">Loading...</div>
+                </div>
+
+                <div class="rp-section-title" style="margin-top: var(--space-3);">
+                    <span class="material-symbols-outlined">psychology</span>
+                    Daily Prompt
+                </div>
+                <div class="rp-card prompt-card">
+                    <div class="prompt-text" id="rp-daily-prompt">"Loading prompt..."</div>
+                </div>
+            </div>
+
+            <div id="rp-state-entry" class="rp-state">
+                <div class="selected-date-header rp-selected-date-text">Date</div>
+
+                <div class="rp-section-title">
+                    <span class="material-symbols-outlined">preview</span>
+                    Preview
+                </div>
+                <div class="entry-preview-text text-muted" id="rp-entry-preview"></div>
+
+                <div class="rp-section-title" style="margin-top: var(--space-3);">
+                    <span class="material-symbols-outlined">mood</span>
+                    Mood
+                </div>
+                <div class="entry-mood-display" id="rp-entry-mood-display">
+                    <span class="entry-mood-icon" id="rp-entry-mood-emoji"><img
+                            src="{{ url_for('static', filename='assets/neutral.png') }}" alt="neutral" class="mood-icon"
+                            style="width: 36px; height: 36px;"></span>
+                    <span class="entry-mood-label" id="rp-entry-mood-label">Neutral</span>
+                </div>
+
+                <div class="rp-section-title" style="margin-top: var(--space-3);">
+                    <span class="material-symbols-outlined">info</span>
+                    Metadata
+                </div>
+                <div class="rp-card">
+                    <div class="entry-meta-list">
+                        <div class="entry-meta-item">
+                            <span>Last Updated</span>
+                            <strong id="rp-entry-updated">-</strong>
+                        </div>
+                        <div class="entry-meta-item">
+                            <span>Word Count</span>
+                            <strong id="rp-entry-wordcount">-</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rp-actions" style="margin-top: auto;">
+                    <button class="btn btn-outline" id="rp-btn-clear"
+                        onclick="window.dispatchEvent(new Event('rp-clear'))">
+                        Back to Dashboard
+                    </button>
+                    <button class="btn btn-primary" id="rp-btn-edit">Edit Entry</button>
+                </div>
+            </div>
+
+            <div id="rp-state-empty" class="rp-state">
+                <div class="selected-date-header rp-selected-date-text">Date</div>
+
+                <div class="empty-state-card">
+                    <span class="material-symbols-outlined empty-state-icon">edit_document</span>
+                    <div class="empty-state-title">No entry yet</div>
+                    <div class="empty-state-desc">You haven't written anything for this date. Capture your thoughts
+                        before they fade!</div>
+                    <button class="btn btn-primary" id="rp-btn-write">Start writing</button>
+                </div>
+
+                <div class="rp-actions" style="margin-top: auto;">
+                    <button class="btn btn-outline" id="rp-btn-clear-empty"
+                        onclick="window.dispatchEvent(new Event('rp-clear'))">
+                        Back to Dashboard
+                    </button>
+                </div>
+            </div>
+
+        </aside>
+
+    </div>
+
+    <div class="dialog-overlay" id="entry-dialog" aria-hidden="true">
+        <div class="dialog-card">
+            <div class="dialog-header">
+                <div>
+                    <h3 class="dialog-title font-serif" id="dialog-date">Date</h3>
+                    <div class="dialog-meta"
+                        style="font-size: 0.85rem; color: var(--color-ink-faint); margin-top: var(--space-1);">
+                        <span id="last-updated">Last updated: Never</span> &nbsp;&bull;&nbsp;
+                        <span id="word-count">0 words</span> &nbsp;&bull;&nbsp;
+                        <span id="char-count">0 characters</span>
+                    </div>
+                </div>
+                <button class="btn-icon" id="btn-close-dialog" aria-label="Close dialog">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div class="dialog-body">
+                <div class="mood-selector" id="mood-selector">
+                    <button class="mood-btn" data-mood="happy" aria-label="Happy mood"><img
+                            src="{{ url_for('static', filename='assets/happy.png') }}" alt="happy"
+                            class="mood-icon"></button>
+                    <button class="mood-btn active" data-mood="neutral" aria-label="Neutral mood"><img
+                            src="{{ url_for('static', filename='assets/neutral.png') }}" alt="neutral"
+                            class="mood-icon"></button>
+                    <button class="mood-btn" data-mood="sad" aria-label="Sad mood"><img
+                            src="{{ url_for('static', filename='assets/sad.png') }}" alt="sad"
+                            class="mood-icon"></button>
+                    <button class="mood-btn" data-mood="angry" aria-label="Angry mood"><img
+                            src="{{ url_for('static', filename='assets/angry.png') }}" alt="angry"
+                            class="mood-icon"></button>
+                </div>
+                <div class="journal-textarea font-serif" id="journal-input" contenteditable="true"
+                    data-placeholder="Start writing your thoughts here..."></div>
+            </div>
+            <div class="dialog-footer" style="justify-content: space-between; align-items: center;">
+                <span class="save-status font-serif" id="save-status"
+                    style="color: var(--color-ink-muted); font-size: 0.95rem; margin-left: var(--space-2);"></span>
+                <div style="display: flex; gap: 8px;">
+                    <button class="btn btn-outline" id="btn-fullscreen-editor">Open Full Editor</button>
+                    <button class="btn btn-primary" id="btn-done-entry">Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editor — Journal iT</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/editor.css') }}" />
+    <link rel="icon" href="{{ url_for('static', filename='assets/logo.png') }}" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+
+<body>
+    <div class="editor-layout">
+        <header class="editor-header">
+            <div class="header-left">
+                <button class="btn btn-icon" id="btn-back">
+                    <span class="material-symbols-outlined">arrow_back</span>
+                </button>
+                <h2 class="font-serif" id="editor-date-title" style="margin:0; font-size:1.5rem;">Loading Date...</h2>
+            </div>
+            <div class="header-right" style="display: flex; gap: 12px; align-items: center;">
+                <span id="save-status" style="color: var(--color-ink-muted); font-size: 0.95rem;"></span>
+                <button class="btn btn-primary" id="btn-save">Save Entry</button>
+            </div>
+        </header>
+
+        <main class="editor-main">
+            <div class="editor-container">
+                <div class="editor-toolbar" id="format-toolbar">
+                    <button class="format-btn" data-command="bold" aria-label="Bold" title="Bold"><span
+                            class="material-symbols-outlined">format_bold</span></button>
+                    <button class="format-btn" data-command="italic" aria-label="Italic" title="Italic"><span
+                            class="material-symbols-outlined">format_italic</span></button>
+                    <button class="format-btn" data-command="underline" aria-label="Underline" title="Underline"><span
+                            class="material-symbols-outlined">format_underlined</span></button>
+                    <div class="divider"></div>
+                    <button class="format-btn" data-command="insertUnorderedList" aria-label="Unordered List"
+                        title="Bullet List"><span class="material-symbols-outlined">format_list_bulleted</span></button>
+                    <button class="format-btn" data-command="insertOrderedList" aria-label="Ordered List"
+                        title="Number List"><span class="material-symbols-outlined">format_list_numbered</span></button>
+                    <div class="divider"></div>
+
+                    <button class="format-btn" data-command="justifyLeft" aria-label="Left Align"
+                        title="Left Align"><span class="material-symbols-outlined">format_align_left</span></button>
+
+                    <button class="format-btn" data-command="justifyCenter" aria-label="Center Align"
+                        title="Center Align"><span class="material-symbols-outlined">format_align_center</span></button>
+                    
+                    <button class="format-btn" data-command="justifyRight" aria-label="Right Align"
+                        title="Right Align"><span class="material-symbols-outlined">format_align_right</span></button>
+                </div>
+
+                <div class="mood-selector-wrapper" style="margin-top: var(--space-4); margin-bottom: var(--space-4);">
+                    <span
+                        style="font-size: 0.9rem; color: var(--color-ink-muted); margin-bottom: 8px; display: block;">How
+                        are you feeling?</span>
+                    <div class="mood-selector" id="mood-selector">
+                        <button class="mood-btn" data-mood="happy"><img src="{{ url_for('static', filename='assets/happy.png') }}" alt="happy" class="mood-icon"></button>
+                        <button class="mood-btn active" data-mood="neutral"><img src="{{ url_for('static', filename='assets/neutral.png') }}" alt="neutral" class="mood-icon"></button>
+                        <button class="mood-btn" data-mood="sad"><img src="{{ url_for('static', filename='assets/sad.png') }}" alt="sad" class="mood-icon"></button>
+                        <button class="mood-btn" data-mood="angry"><img src="{{ url_for('static', filename='assets/angry.png') }}" alt="angry" class="mood-icon"></button>
+                    </div>
+                </div>
+
+                <div class="editor-content font-serif" id="editor-content" contenteditable="true"
+                    data-placeholder="Pour your thoughts here..."></div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="{{ url_for('static', filename='js/editor.js') }}"></script>
+</body>
+
+</html>
